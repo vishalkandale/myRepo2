@@ -1,0 +1,1595 @@
+							WEB TECHNOLOGY
+
+1. Write a PHP script for the following: Design a form to accept a string. 
+ a. Write a function to find the length of given string without using built in functions.
+ b. Write a function to count the total number of vowels i.e. (a,e,i,o,u) ) from the string.
+ c. Convert the given string to lowercase and then to Title case. 
+ d. Pad the given string with “*” from left and right both the sides. 
+ e. Remove the leading whitespaces from the given string. 
+ f. Find the reverse of given string.(use built-in functions) (Use radio buttons and the concept 
+of function. Use ‘include’ construct or ‘require’ stmt.)
+
+ans-
+<html>
+<head>
+</head>
+<body>
+ <form method="post">
+Enter the string<input type="txt" name="num1"><br><br>
+<input type= "submit" name="btn"><br><br>
+<input type="radio" name="rb" value="1">length<br>
+<input type="radio" name="rb" value="2">Number of vowels<br>
+<input type="radio" name="rb" value="3">lowercase and then title<br>
+<input type="radio" name="rb" value="4">Pad the string with *<br>
+<input type="radio" name="rb" value="5">Remove leading Whitespace<br>
+<input type="radio" name="rb" value="6">Reverse of string<br>
+</form>
+</body>
+<?php
+if(isset($_POST["btn"]))
+{
+ extract($_POST);
+}
+?>
+<br/>
+<?php
+switch($rb)
+{
+case 1: $num1;
+echo"String is:".$num1;
+for($string_length = 0; $num1[$string_length] != null; $string_length++);
+ {
+ echo "Total String Length : ".$string_length;
+ }
+ break;
+ case 2:
+ $num1;
+ echo "String is:".$num1;
+ echo"<br>";
+ $vowels = array('a','e','i','o','u');
+ $len = strlen($num1);
+ $num = 0;
+ $i=0;
+ while( $i<$len){
+ if(in_array($num1[$i], $vowels))
+ {
+ $num++;
+ }
+$i++;
+}
+echo "Number of vowels :". $num;
+echo "<br>";
+ break;
+ case 3:$num1;
+ $string=ucwords($num1);
+ $string=ucwords(strtolower($string));
+ echo"String is:".$string;
+ break;
+ case 4: $num1;
+ echo str_pad($num1,20,"*",STR_PAD_BOTH);
+ break;
+ case 5: $num1;
+ echo "string is:" .$num1; 
+ echo"<br>";
+ $num1=str_replace('','',$num1);
+ echo $num1;
+ break;
+ case 6:$num1;
+ echo "Reverse of string $num1 is => ".strrev( $num1); 
+ break;
+ }
+?>
+</html>
+
+2. Write a PHP script for the following: Design a form to accept two strings from the user.
+a. Find whether the small string appears at the start of the large string.
+b. Find the position of the small string in the big string. 
+c. Compare both the string for first n characters, also the comparison should not be 
+ case sensitive
+
+ANS-
+<html>
+<head>
+</head>
+<body>
+ <form method="post">
+<html>
+<head>
+</head>
+<body>
+ <form method="post">
+Enter the First String<input type="txt" name="str1"><br><br>
+Enter the Second String<input type="txt" name="str2"><br><br>
+<input type= "submit" name="btn"><br><br>
+<input type="radio" name="rb" value="1">Occurance<br>
+<input type="radio" name="rb" value="2">Position<br>
+<input type="radio" name="rb" value="3">compare<br>
+</form>
+</body>
+<?php
+if(isset($_POST["btn"]))
+{
+ $str1=$_POST['str1'];
+ $str2=$_POST['str2'];
+ $rb=$_POST['rb'];
+echo"First string=$str1.<br>";
+echo"Second string=$str2.<br>";
+switch($rb)
+{
+ case 1 : if(strcmp($str2,substr($str1,0,strlen($str2)))==0)
+ {
+ echo"yes 2nd string appears at start of 1st string";
+ }
+ else
+ {
+ echo"No, string does not appears at start of 1st string";
+ }
+ break;
+ case 2:$Z=0;
+ $flag=0;
+ while($Z<=strlen($str1))
+ {
+ if(strcmp($str2,substr($str1,$Z,strlen($str2)))==0)
+ {$flag=1;
+ $pos=$Z+1;
+ $pos=$Z+1;
+ $Z++;
+ }
+ else{
+ $Z++;
+ }
+ }
+ if($flag==1)
+ {
+ echo"yes string found at $pos";
+ }
+ else
+ {
+ echo"String not found "; 
+ }
+ break;
+ case 3: if(strcmp($str1,$str2)==0)
+ {
+ echo"Both the Strings are Same";
+ }
+ else
+ {
+ echo"Both the Strings are not Same";
+ }
+ break;
+} 
+}
+?>
+</html>
+
+3. Create a HTML document to display the following screen.
+
+list of indian states with their capital
+
+ANS-
+
+<html>
+<head>
+</head>
+<body>
+ <h1>List of Indian States with their Capital</h1>
+ <ol>
+ <li>Delhi</li>
+ <ul>
+ <li>NewDelhi</li>
+ </ul>
+ <li>Haryana</li>
+ <ul>
+ <li>Chandigarh</li>
+ </ul>
+ <li>Gujarat</li>
+ <ul>
+ <li>Gandhinagar</li>
+ </ul>
+ <li>Rajasthan</li>
+ <ul>
+ <li>Jaipur</li>
+ </ul>
+ <li>Maharashtra</li>
+ <ul>
+ <li>Mumbai</li>
+ </ul>
+ <li>
+ Uttarpradesh
+ </li>
+ <ul>
+ <li>Lucknow</li>
+ </ul>
+ </ol>
+</body>
+</html>
+
+4. Create your array of 30 high temperatures, approximating the weather for a spring month, then 
+find the average high temp, the five warmest high temps and the five coolest high temps. Display 
+the result on the browser. Hint: a) Use array_slice b) the HTML character entity for the degree 
+sign is & deg.
+
+ANS-
+
+
+<h2>Manipulate the Array</h2>
+<h3>High Temperatures for Spring Month</h3>
+<?php
+$temp = array(68, 70, 72, 58, 60, 79, 82, 73, 75, 77, 73, 58, 63, 79, 78,
+68, 72, 73, 80, 79, 68, 72, 75, 77, 73, 78, 82, 85, 89, 83);
+
+$sum = array_sum($temp);
+
+$count = count($temp);
+
+$average = ($sum/$count);
+
+$temp = array_unique($temp);
+
+sort($temp);
+
+$warmest = array_slice($temp, -5, 5);
+
+$coolest = array_slice($temp, 0, 5);
+?>
+<p>The average high temp is: <?php echo round($average)."&degF"; ?></p>
+<p>The 5 warmest high temps were: <?php foreach($warmest as $w){echo "$w&degF, ";} 
+?></p>
+<p>The 5 coolest high temps were: <?php foreach($coolest as $c){echo "$c&degF, ";} 
+?></p>
+
+
+5. Write a HTML code, which generate the following output
+
+List of Books
+Programming in Python
+Programming in Java
+
+Ans-
+
+<html>
+<head>
+<title></title>
+<style>
+table,th,td{
+ padding:8px;
+border-collapse:collapse;
+ }
+</style>
+</head>
+<body>
+<table border=1px;border-collapse:collapse;>
+ <tr>
+ <th colspan="4";>List of Books</th>
+ </tr>
+<th rowspan="2";>Item No</th>
+<th rowspan="2";>Item Name</th>
+<th colspan="2";>Price</th>
+<tr>
+<td align="center">Rs.</td>
+<td align="center">Paise</td>
+</tr>
+<tr>
+<td align="center";>1</td>
+<td align="center";>Programming in Python</td>
+<td align="center";>500</td>
+<td align="center";>50</td>
+</tr>
+<tr>
+<td align="center";>2</td>
+<td align="left";>Programming in Java</td>
+<td align="center";>345</td>
+<td align="center";>00</td>
+</tr>
+</table>
+</body>
+</html>
+
+6. Write a script to accept two integers (Use html form having 2 textboxes). Write a PHP script 
+to, 
+a. Find mod of the two numbers.
+b. Find the power of first number raised to the second. 
+c. Find the sum of first n numbers (considering first number as n)
+d. Find the factorial of second number. (Write separate function for each of the above 
+operations.)
+
+Ans-
+
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<form method = "POST">
+Enter the first no.<input type="text" name="txtbox1"><br><br>
+Enter the second no.<input type="text" name="txtbox2"><br>
+<input type="radio" name="rbchoice"value="1">Mod<br>
+<input type="radio" name="rbchoice"value="2">Power<br>
+<input type="radio" name="rbchoice"value="3">Sum<br>
+<input type="radio" name="rbchoice"value="4">Factorial<br>
+<input type="submit" name = "btn" value="Show">
+</form>
+</body>
+<?php
+if(isset($_POST["btn"]))
+{ extract($_POST);
+}
+?>
+<br/>
+ans:-
+<?php
+switch($rbchoice)
+{
+case 1 : echo $txtbox1 % $txtbox2;
+break;
+case 2 : echo pow($txtbox1, $txtbox2);
+break;
+case 3 : $ans=0;
+for($i=1; $i<=$txtbox1; $i++)
+{
+$ans+=$i;
+}
+echo $ans;
+break;
+case 4 : $ans=1;
+for($i=1;$i<=$txtbox2;$i++)
+{
+$ans=$ans*$i;
+}
+echo $ans;
+break;
+}
+?>
+</html>
+
+
+7.Write a HTML script to design the following screen
+This is header.
+
+Ans-
+
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<table border=1px;>
+<tr>
+<th align="left"colspan="2";>
+<header>
+<h1>This is a header.</h1>
+</header>
+</th>
+</tr>
+ <tr>
+ <td style="align=left;padding:0px 45px 0px 4px;">
+<p>Look in the box at<br>
+the right for some
+<br> information.</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+</td>
+<td style="align=left;padding:0px 145px 0px 4px;">
+<p>Here is some information.</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</td>
+</tr>
+<tr>
+<th align="left" colspan="2">
+<footer>
+<h1>This is a footer.</h1>
+</footer>
+</th>
+</tr>
+</table>
+</body>
+</html>
+
+
+8. Using regular expressions check for the validity of entered email-id.
+a. The @ symbol should not appear more than once.
+b. The dot (.) can appear at the most once before @ and at the most twice or at least once
+after @ symbol.
+c. The substring before @ should not begin with a digit or underscore or dot or @ or any
+other special character. (Use explode and ereg function.)
+
+
+Ans-
+
+<html>
+<body>
+<form method='POST'>
+Email Address:<input type='text' name='email'>
+<input type='submit' value='Submit'>
+</form>
+</body>
+</html>
+<?php
+$email=$_POST['email']; // POST method 
+if(!preg_match("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[az]{2,3})$^",$email))
+{ 
+echo "<center><font face='Verdana' size='2' color=red>Invalid email</font></center>";
+}else{
+echo "<center><font face='Verdana' size='2' color=green>Valid Email</font></center>";
+}
+if (!stristr($em,"@") OR !stristr($em,".")) {
+ $msg="Your email address is not correct <BR>"; 
+ 
+ $status= "NOTOK";
+ } else {
+ echo " Your email address is OK ";
+ }
+ ?>
+
+
+9. Write a menu driven program to perform the following stack and queue related operations:
+[Hint: use Array_push(), Array_pop(), Array_shift(), Array_unshift() ]
+a) Insert an element in stack
+b) Delete an element from stack
+c) Display the contents of stack
+d) Insert an element in queue
+e) Delete an element from queue
+f) Display the contents of queue
+
+ANS-
+
+//1
+st create .php file
+<?php
+$choice=$_POST['ch'];
+{
+ $arr=array(1,2,3,4,5,6,7,8,9,10);
+ switch($choice)
+ {
+ case 1:
+ array_push($arr,10);
+ print_r($arr);
+ break;
+ case 2:
+ $ele=array_pop($arr);
+ echo "Poped element : $ele";
+ break;
+ case 3:
+ print_r($arr);
+ break;
+ case 4:
+ array_unshift($arr,"10");
+ print_r($arr);
+ break;
+ case 5:
+ $ele=array_shift($arr);
+ echo "Deleted element : $ele";
+ break;
+ case 6:
+ print_r($arr);
+ break;
+ }
+}
+?>
+//create .html file and run this file
+<html>
+<body>
+<form action="setA2.php" method="post">
+Enter choice :
+<br><input type="radio" name="ch" value=1> Insert element in stack <br>
+<input type="radio" name="ch" value=2> Delete element from stack <br>
+<input type="radio" name="ch" value=3> Display content of stack <br>
+<input type="radio" name="ch" value=4> Insert element in queue<br>
+<input type="radio" name="ch" value=5> Delete element from queue <br>
+<input type="radio" name="ch" value=6> Display content of queue <br>
+<br>
+<input type="submit" value="submit">
+<input type="reset" value="reset">
+</body>
+</html>
+
+10.Write the HTML code for generating the form as shown below. Apply the internal CSS to 
+following form change the font size of the heading to 6pt and change the color to red and also 
+change the background color yellow.
+
+Operating System Information
+
+ANs-
+
+<html>
+<head>
+</head>
+<style>
+ h1{
+ font-size: 6pt;
+ color: red;
+ }
+</style>
+<body bgcolor="yellow";>
+ <h1>Operating System Information</h1>
+ Enter your name<input type="text"><br><br>
+ Password<input type="password"><br><br>
+ Which of the following operating system have you used<br><br>
+ <input type="checkbox" name="checkbox">Linux
+ <input type="checkbox" name="checkbox">Windows 10
+ <input type="checkbox" name="checkbox">Macintosh 8.0
+ Which of the operating system do you like the best?<br><br>
+ <input type="radio" name="rb">Linux
+ <input type="radio" name="rb">Windows 10
+ <input type="radio" name="rb">Macintosh 8.0<br><br><br><br>
+ You have completed the form<input type="submit" value="sign Up">
+</body>
+</html>
+
+
+11. Write HTML 5 code which generates the following output and display each element of list in 
+different size, color & font. Use external CSS to format the list. 
+
+Non flowering plants
+
+Ans-
+
+//FIRST CREATE THE CSS FILE -
+// myfile.csv
+.a1{
+font-size: 50px;
+color: black;
+font-family: monospace;
+font-style: italic;
+}
+.a2{
+ font-size: 20px;
+color: blue;
+font-family: monospace;
+font-style: bold;
+}
+.a3{
+ font-size: 50px;
+color: red;
+font-family: monospace;
+font-style:italic;
+}
+.a4{
+ font-size: 30px;
+color: brown;
+font-family: monospace;
+font-style:italic;
+ list-style-type: square;
+}
+.a5{
+ font-size: 15px;
+color: rgb(235, 12, 135);
+font-family: monospace;
+font-weight: bolder;
+ font-style: Georgia Bold;
+ 
+}
+//program
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="myfile.css">
+</head>
+<body>
+<ul >
+<li class="a1">Non flowering plants</li>
+<ul class="a2">
+<li>Fern</li>
+<li>Spore</li>
+ </ul>
+<li class="a3">Flowering plants</li>
+<ul >
+ <li class="a4">Lilly</li>
+ <li class="a4">Rose</li>
+ <ol class="a5">
+ <li>Red Rose</li>
+ <li>Pink Rose</li>
+ </ol> 
+</ul>
+</body>
+</html>
+
+
+12. Create HTML5 page with following specifications
+i) Title should be about your City. 
+ii) Color the background by Pink color.
+iii) Place your city name at the top of page in large text and in blue color.
+iv) Add names of the landmarks in your city, each in different color, style and font
+v) Add scrolling text about your City.
+vi) Add any image at the bottom. (Use inline CSS to format the web page).
+
+Ans-
+
+<html>
+<head>
+<title>Mycity Myplace</title>
+</head>
+<style>
+#a1{font-size:100px;
+ color:blue;
+ text-align:center;
+ }
+.a2{
+ font-size:60px;
+ }
+#a3{
+font-size:40px;
+}
+.img1{
+width:200px;
+height:100px;
+}
+</style>
+<body bgcolor="Pink">
+<div id="a1">
+Nashik
+</div>
+<div>
+<div class="a2"style="color:rgb(202,29,38);">Landmarks in My City</div>
+<ol id="a3">
+<li style="color:rgb(80,141,225); font-style:italic;">Saptashrungi</li>
+<li style="oblique;">Kalaram Temple</li>
+<li style="color:rgb(230,62,6);">Someshwar temple</li>
+<li style="color:rgb(228,177,11);font-style:oblique;">Swami Samarth 
+Ashram</li>
+<li style="color:forestream;">Ramkund</li>
+</ol>
+<marquee style="font-size:30px;color:fuchsici;">
+Nashik...The Best Climate City
+</marquee>
+</div>
+<div>
+<img src="https://im.hunt.in/cg/Nashik/City-Guide/trimbakeshwarnashik.jpg"class="img1">
+<img 
+src="https://res.cloudinary.com/simplotel/image/upload/x_0,y_192,w_2048,h_1152,r_0,c_
+crop,q_80,fl_progressive/w_1350,f_auto,c_fit/kamfotel-hotelnashik/Pandavleni_Caves_near_Nasik_vep6tl"class="img1">
+</div>
+</body>
+</html>
+
+
+13. Write a PHP script for the following: Design a form having a text box and a drop down list 
+containing any 3 separators (e.g. #, |, %, @,! or comma) accept a strings from the user and also a 
+separator. 
+a. Split the string into separate words using the given separator.
+b. Replace all the occurrences of separator in the given string with some other separator.
+c. Find the last word in the given string (Use strrstr() function).
+
+Ans-
+
+<html>
+<head></head>
+<body>
+ <form method="POST">
+ Enter a string: <input type="text" name="str"><br>
+ Choose a separator:
+ <select name="sep">
+ <option>#</option>
+ <option>%</option>
+ <option>@</option>
+ </select><br>
+ <input type="radio" name="rbchoice" value="1">Split using separator<br>
+ <input type="radio" name="rbchoice" value="2">Replace<br>
+ <input type="radio" name="rbchoice" value="3">Last word<br>
+ <input type="submit" name="btnshow" value="submit"><br>
+ </form>
+ <hr />
+ 
+</body>
+</html>
+<?php
+if (isset($_POST["btnshow"])) {
+ $str = $_POST["str"];
+ $sep = $_POST["sep"];
+ $rbchoice = $_POST["rbchoice"];
+ switch ($rbchoice) {
+ case 1:
+ $words = explode(" ", $str);
+ foreach ($words as $word)
+ echo $word, $sep;
+ break;
+ case 2:
+ $words = explode(" ", $str);
+ foreach ($words as $word)
+ echo $word, ",";
+ break;
+ case 3:
+ $last_word_start = strrpos($str, ' ') + 1;
+ echo $last_word = substr($str, $last_word_start);
+ break;
+ }
+}
+?>
+
+
+14.Write a PHP script having 3 textboxes. The first textbox should be for accepting name of the 
+student, second for accepting name of college and third for accepting a proper greeting message. 
+Write a function for accepting all the three parameters and generating a proper greeting message. 
+If any of the parameters are not passed, generate the proper greeting message. (Use the concept 
+of missing parameters).
+
+
+Ans-
+
+<html>
+<head></head>
+<body>
+ <form method="POST">
+ Enter student name: <input type="text" name="str1"><br>
+ Enter college name: <input type="text" name="str2"><br>
+ Enter greeting message: <input type="text" name="str3"><br>
+ <input type="submit" name="btnshow" value="submit">
+ </form>
+ <hr />
+ Ans:
+</body>
+</html>
+<?php
+function greet($name = "VAIBHAV", $clg = "KTHM", $msg = "Have a good day")
+{
+ return "Hello $name from $clg college. $msg!";
+}
+if (isset($_POST["btnshow"])) {
+ $str1 = $_POST["str1"];
+ $str2 = $_POST["str2"];
+ $str3 = $_POST["str3"];
+ if (empty($_POST["str1"]) && empty($_POST["str2"]) && empty($_POST["str3"]))
+ echo greet();
+ elseif (empty($_POST["str2"]) && empty($_POST["str3"]))
+ echo greet($str1);
+ elseif (empty($_POST["str3"]))
+ echo greet($str1, $str2);
+ else
+ echo greet($str1, $str2, $str3);
+}
+?>
+
+
+15. Write a PHP script for the following: Design a form to accept the marks of 5 different 
+subjects of a student, having serial number, subject name & marks out of 100. Display the result 
+in the tabular format which will have total, percentage and grade. Use only 3 text boxes. (Use 
+array of form parameters)
+
+
+Ans-
+
+//CREATE 1ST dict.dat file & enter data
+1 VAIBHAV 78 97 80 85 89 
+2 GAURAV 99 90 96 86 87
+//PROGRAM
+<html>
+<body>
+<center>
+<h2> student Details</h2>
+<form method="GET">
+<h2> Reading File In Tabular Format : </h2>
+<h3> Enter Directory Name : <input type=text name=d><br><br> </h3>
+<pre>
+<input type=submit value=submit name=Show>
+<input type=reset value=Reset name=Reset>
+</pre>
+</form>
+</center>
+</body>
+</html>
+<?php
+if(file_exists('dict.dat'))
+{
+ $f = fopen('dict.dat','r');
+ echo "<br><br>";
+ echo "<table border type=3 align=center>";
+ echo "<tr><td align=center>Sr No</td>";
+ echo "<td align=center> Name</td>";
+ echo "<td align=center> Maths</td>";
+ echo "<td align=center> Science</td>";
+ echo "<td align=center> Computer</td>";
+ echo "<td align=center> Python</td>";
+ echo "<td align=center> Java</td>";
+ echo "<td align=center> Total</td>";
+ echo "<td align=center> Percentage</td>";
+ echo "<td align=center> Grade</td></tr>";
+ while(!feof($f))
+ {
+ $d = fgets($f);
+$s = explode(' ',$d);
+ 
+if(!empty($s[0]) && !empty($s[1]) && !empty($s[2]) && !empty($s[3]) && !empty($s[4]) 
+&& !empty($s[5]) && !empty($s[6]))
+ { 
+ $m1 = $s[2];
+$m2 = $s[3];
+$m3 = $s[4];
+ $m4 = $s[5];
+$m5 = $s[6];
+$total = $m1+$m2+$m3+$m4+$m5;
+$avg = ($total/500)*100;
+if($avg>=0&&$avg<=50)
+$grade="Fail";
+if($avg>50&&$avg<=70)
+ $grade="C";
+ if($avg>70&&$avg<=80)
+ $grade="B";
+ if($avg>80&&$avg<=90)
+ $grade="A";
+ if($avg>90)
+ $grade="E";
+ echo "<br>";
+ 
+ echo "<tr><td align=center>$s[0]</td>";
+ echo "<td align=center> $s[1]</td>";
+echo "<td align=center> $m1</td>";
+echo "<td align=center> $m2</td>";
+echo "<td align=center> $m3</td>";
+ echo "<td align=center> $m4</td>";
+ echo "<td align=center> $m5</td>";
+echo "<td align=center> $total</td>";
+echo "<td align=center> $avg</td>";
+echo "<td align=center> $grade.</td></tr>"; 
+ }
+ }
+echo "</table>";
+}
+?>
+
+
+16. Write a PHP script that inserts a new item in an array at any position. (hint : use 
+array_splice())
+
+
+Ans-
+
+
+<?php
+$original_array = array( '1', '2', '3', '4', '5' );
+echo 'Original array : ';
+foreach ($original_array as $x)
+{
+echo "$x ";
+}
+echo "\n";
+$inserted_value = '11';
+$position = 2;
+array_splice( $original_array, $position, 0, $inserted_value );
+echo "After inserting 11 in the array is : ";
+foreach ($original_array as $x)
+{
+echo "$x ";
+}
+?>
+
+17. Write a PHP script to sort the following associative array :
+array("Sophia"=>"31","Jacob"=>"41","William"=>"39","Ramesh"=>"40") in
+a) ascending order sort by value
+b) ascending order sort by Key
+c) descending order sorting by Value
+d) descending order sorting by Key
+
+ANs-
+
+
+<?php
+echo "Ascending order sort by value";
+$array2 = array("Sophia" => "31", "Jacob" => "41", "William" => "39", "Ramesh" => "40");
+asort($array2);
+foreach ($array2 as $y => $y_value) {
+ echo "<br>Age of " . $y . " is : " . $y_value . "";
+}
+echo "<br><br>Ascending order sort by Key";
+$array3 = array("Sophia" => "31", "Jacob" => "41", "William" => "39", "Ramesh" => "40");
+ksort($array3);
+foreach ($array3 as $y => $y_value) {
+ echo "<br>Age of " . $y . " is : " . $y_value . "";
+}
+echo "<br><br>Descending order sorting by Value";
+$age = array("Sophia" => "31", "Jacob" => "41", "William" => "39", "Ramesh" => "40");
+arsort($age);
+foreach ($age as $y => $y_value) {
+ echo "<br>Age of " . $y . " is : " . $y_value . "";
+}
+echo "<br><br>Descending order sorting by Key";
+$array4 = array("Sophia" => "31", "Jacob" => "41", "William" => "39", "Ramesh" => "40");
+krsort($array4);
+foreach ($array4 as $y => $y_value) {
+ echo "<br>Age of " . $y . " is : " . $y_value . "";
+}
+
+18. Write a menu driven program to perform the following operations on associative arrays:
+a) Split an array into chunks
+b) Sort the array by values without changing the keys.
+c) Filter the odd elements from an array.
+d) Merge the given arrays.
+e) Find the intersection of two arrays.
+f) Find the union of two arrays.
+g) Find set difference of two arrays.
+
+
+Ans-
+
+<html>
+<body bgcolor="gray">
+<form action="setC2.php" method="post">
+<h2>Enter choice :</h2>
+<input type="radio" name="ch" value=1> Split array into chunks<br>
+<input type="radio" name="ch" value=2> Sort array by values without changing key values 
+<br>
+<input type="radio" name="ch" value=3> Filter odd elements from array <br>
+<input type="radio" name="ch" value=4> Merge given two arrays <br>
+<input type="radio" name="ch" value=5> Find intersection of two array <br>
+<input type="radio" name="ch" value=6> Find union of two array <br>
+<input type="radio" name="ch" value=7> Find set difference of two array <br>
+<br>
+<input type="submit" value="SUBMIT"> <input type="reset" value="CLEAR">
+</body>
+</html>
+<html>
+<body bgcolor="gold">
+<?php
+function is_odd($var)
+{
+if($var%2==1)
+return $var;
+}
+ $choice=$_POST['ch'];
+ $arr=array('a'=>1,'b'=>2,'c'=>3,'d'=>4,'e'=>5,'f'=>6,'g'=>7,'h'=>8);
+ $arr1=array('l'=>11,'m'=>22,'n'=>33,'o'=>44,'p'=>55,'q'=>66,'r'=>77,'s'=>88);
+ $arr2=array('a'=>10,'b'=>20,'c'=>30,'d'=>40,'e'=>50,'f'=>60,'g'=>70,'h'=>80);
+ switch($choice)
+ {
+ case 1:
+ 
+ print_r(array_chunk($arr,2));
+ break;
+ case 2:
+ asort($arr);
+ echo "Array in ascending order:<br>";
+ print_r($arr);
+ arsort($arr);
+ echo "<br>Array in descending order:<br>";
+ print_r($arr);
+ break;
+ case 3:
+ print_r(array_filter($arr,'is_odd'));
+ break;
+ case 4:
+ print_r(array_merge($arr,$arr1));
+ break;
+ case 5:
+ print_r(array_intersect($arr,$arr1));
+ break;
+ case 6:
+ $union=array_merge($arr,$arr1);
+ print_r(array_unique($union));
+ break;
+ case 7:
+ print_r(array_diff($arr,$arr1));
+ break;
+ }
+echo "<br><a href ='a2c2.html'> RETURN</a>";
+?>
+</font>
+</body>
+</html>
+
+
+19. Design HTML 5 Page Using CSS Which Display the following Navigation Bar
+
+ANs-
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+ margin: 0;
+ font-family: Arial, Helvetica, sans-serif;
+}
+.topnav {
+ overflow: hidden;
+ background-color: gray;
+ margin: 3px;
+ border-radius: 2px;
+}
+.topnav a {
+ float: left;
+ display: block;
+ color: black;
+ text-align: center;
+ padding: 14px 16px;
+ text-decoration: none;
+ font-size: 17px;
+}
+.topnav a:hover {
+ background-color: #ddd;
+ color: rgb(0, 0, 0);
+}
+.topnav a.active {
+ background-color: black;
+ color: white;
+}
+</style>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+ <a href="#home" class="active">Home</a>
+ <a href="#news">Java</a>
+ <a href="#contact">HTML</a>
+ <a href="#about">CSS</a>
+</a>
+</div>
+</body>
+</html>
+
+
+20. Design HTML 5 Page Using CSS which display the following Box ( use Box Model Property in
+CSS)
+
+
+Ans-
+
+
+<html>
+<head>
+</head>
+<style>
+#b1{
+background-color:Blue;
+width:600px;
+height:300px;
+border:2px solid black;
+text-align:auto;
+margin:auto;
+}
+#c1{
+background-color:yellow;
+width:500px;
+height:200px;
+border:2px solid black;
+margin-left:50px;
+margin-top:50px;
+}
+#d{
+background-color:red;
+width:300px;
+height:30px;
+border:2px solid black;
+text-align:center;
+margin-left:100px;
+margin-top:60px;
+height:30px;
+}
+#e{
+background-color:red;
+width:300px;
+height:30px;
+border:2px solid black;
+text-align:center;
+margin-left:100px;
+margin-top:20px;
+height:30px;
+}
+h1{
+text-align:center;
+}
+</style>
+<body>
+<h1 id=a>CSS Box Model Property</h1>
+<div id=b1>
+<div id=c1>
+<div id=d>T.Y.B.Sc(Comp.Sci);</div>
+<div id=e>Academic Year 2021-22</div>
+</div>
+<div>
+</body>
+</html>
+
+
+
+
+						FDS
+
+
+1.Create below data frame and do simple preprocessing
+C01 C02 C03
+1 12 22
+3 2 34
+7 7 -11
+4 1 9
+• Apply Binarizing Data using we use the Binarizer class (Using a binary threshold, it is 
+possible to transform our data by marking the values above it 1 and those equal to or below 
+it, 0)
+
+ANS-
+
+import pandas as pd
+df = pd.DataFrame(columns= ['C01','C02','C03'])
+df.loc[0]=[1, 12, 12]
+df.loc[1]=[3, 2, 34]
+df.loc[2]=[7, 7, -11]
+df.loc[3]=[4, 1, 9]
+print(df)
+import numpy as np
+from sklearn import preprocessing
+import scipy.stats as s
+data_binarized = preprocessing.Binarizer(threshold=2).transform(df)
+print("\n Binarized data")
+print("\n -----------------")
+print(data_binarized)
+
+17. Create below data frame and do simple preprocessing
+C01 C02 C03
+1 12 22
+3 2 34
+7 7 -11
+4 1 9
+• Apply Rescaling: Normalised the dataset using MinMaxScaler class 
+
+Ans-
+
+
+import pandas as pd
+import numpy as np
+from sklearn import preprocessing
+import scipy.stats as s
+print("\n\n Data Scaled between 0 to 1")
+data_scaler = preprocessing.MinMaxScaler(feature_range=(0, 1))
+data_scaled = data_scaler.fit_transform(df)
+print("\n Min Max Scaled Data")
+print("----------------------")
+print(data_scaled.round(2))
+
+18.Create below data frame and do simple preprocessing
+C01 C02 C03
+1 12 22
+3 2 34
+7 7 -11
+4 1 9
+• Apply Standardizing Data (transform them into a standard Gaussian distribution with a 
+mean of 0 and a standard deviation of 1)
+
+Ans-
+
+import pandas as pd
+import numpy as np
+from sklearn import preprocessing
+import scipy.stats as s
+print("\n Standardizing data")
+print("------------------------")
+X_train=df
+print("Original data \n",X_train)
+print("\n Initial mean:",s.tmean(X_train).round(2))
+print("Initial Standard Deviation:",round(X_train.std(),2))
+X_scaled = preprocessing.scale(X_train)
+X_scaled.mean(axis=0)
+X_scaled.std(axis=0)
+print("\n Standardized data \n",X_scaled.round(2))
+print("\n scaled mean: ",s.tmean(X_scaled).round(2))
+print("Scaled Standard Deviation: ",round(X_scaled.std(),2))
+
+19.Create below data frame and do simple preprocessing
+C01 C02 C03
+1 12 22
+3 2 34
+7 7 -11
+4 1 9
+• Apply Normalizing Data (rescale each observation to a length of 1 (a unit norm). For 
+this, use the Normalizer class.) 
+
+Ans-
+
+
+import pandas as pd
+import numpy as np
+from sklearn import preprocessing
+import scipy.stats as s
+dn = preprocessing.normalize(df, norm='l1')
+print("\n L1 Normalized data")
+print("-------------")
+print(dn.round(2))
+
+2. Generate a random array of 50 integers and display them using a line chart, scatter
+plot, histogram and box plot. Apply appropriate color, labels and styling options.
+
+Ans-
+
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import numpy as np
+x=np.linspace(0,50,150)
+y=x*np.linspace(150,200,150)
+plt.plot(x,y,'m',marker='^',markersize=6)
+x = np.random.randn(50)
+y= np.random.randn(50)
+size=150*np.random.randn(50)
+colors=100*np.random.randn(50)
+plt.scatter(x,y,s=size,c=colors,marker='p', alpha=0.8)
+data =np.random.randn(50)
+plt.hist(data, facecolor='m', linewidth=2, edgecolor='k')
+data =np.random.randn(50)
+plt.boxplot(data, vert=False)
+plt.show()
+
+3.Write a Python program to 
+• Create a data frame containing columns name, age and percentage. 
+• Add 10 rows to the data frame. View the data frame.
+• Generate a line plot of name vs percentage
+
+Ans-
+
+
+#import the library
+import pandas as pd
+#create an empty data frame with column names
+df = pd.DataFrame(columns = ['Name', 'Age', 'Percentage'])
+#Add records
+df.loc[0] = ['Anil', 21, 80]
+df.loc[1] = ['Nita', 27, 67]
+df.loc[2] = ['Khushi', 20, 88]
+df.loc[3] = ['Priya', 25, 90]
+df.loc[4] = ['Minal', 21, 72]
+df.loc[5] = ['Jay', 24, 79]
+df.loc[6] = ['Sneha', 26, 77]
+df.loc[7] = ['Sonali', 22, 80]
+df.loc[8] = ['Vikas', 25, 73]
+df.loc[9] = ['Mira', 21, 91]
+print(df)
+plt.plot(df.Name, df["Percentage"], "r--")
+plt.show
+
+4.Write a Python program to 
+• Create a data frame containing columns name, age and percentage. 
+• Add 10 rows to the data frame. View the data frame.
+• Generate a scatter plot of name vs percentage
+
+Ans-
+
+#import the library
+import pandas as pd
+#create an empty data frame with column names
+df = pd.DataFrame(columns = ['Name', 'Age', 'Percentage'])
+#Add records
+df.loc[0] = ['Anil', 21, 80]
+df.loc[1] = ['Nita', 27, 67]
+df.loc[2] = ['Khushi', 20, 88]
+df.loc[3] = ['Priya', 25, 90]
+df.loc[4] = ['Minal', 21, 72]
+df.loc[5] = ['Jay', 24, 79]
+df.loc[6] = ['Sneha', 26, 77]
+df.loc[7] = ['Sonali', 22, 80]
+df.loc[8] = ['Vikas', 25, 73]
+df.loc[9] = ['Mira', 21, 91]
+print(df)
+import matplotlib.pyplot as plt
+plt.scatter(df['Name'], df['Percentage'])
+plt.show()
+
+5. Write a Python program to 
+• Create heights and weights data frame
+Index Height(Inches) Weight(Pounds)
+1 65.78331 112.9925
+2 71.51521 136.4873
+3 69.39874 153.0269
+4 68.2166 142.3354
+5 67.78781 144.2971
+• Print the first, last 3 rows and random 5 rows.
+• Find the shape, size, datatypes of the data frame object.
+• View basic statistical details of the data.
+
+Ans-
+
+import pandas as pd
+df = pd.DataFrame(columns = ['Index', 'Height(Inches)', 'Weight(pounds)
+'])
+df.loc[0]= [1, 65.78331, 112.9925]
+df.loc[1]= [2, 71.51521, 136.4873]
+df.loc[2]= [3, 69.39874, 153.0269]
+df.loc[3]= [4, 68.2166, 142.3354]
+df.loc[4]= [5, 67.78781, 144.2971]
+print(df)
+print(df.head(3))
+print(df.tail(3))
+print(df.sample(5))
+print(df.shape)
+print(df.size)
+print(df.dtypes)
+print(df.describe())
+
+6.Write a Python program to 
+• Create heights and weights data frame
+Index Height(Inches) Weight(Pounds)
+1 65.78331 112.9925
+2 71.51521 136.4873
+3 69.39874 153.0269
+4 68.2166 142.3354
+5 67.78781 144.2971
+• Add a column to the data frame “BMI” which is calculated as: weight/height2
+• Find the maximum and minimum BMI
+
+Ans-
+
+
+df["BMI"] = df["Weight(pounds)"] / (df["Height(Inches)"]**2)
+print(df)
+print(max(df['BMI']))
+print(min(df['BMI']))
+
+7.Write a Python program to create heights and weights data frame
+Index Height(Inches) Weight(Pounds)
+1 65.78331 112.9925
+2 71.51521 136.4873
+3 69.39874 153.0269
+4 68.2166 142.3354
+5 67.78781 144.2971
+•Generate a scatter plot of height vs weight
+
+Ans-
+
+import matplotlib.pyplot as plt
+plt.scatter(df['Height(Inches)'], df['Weight(pounds)'])
+plt.show()
+
+ 8.Write a Python program to create Iris data frame
+Id SepalLength SepalWidth PetalLength PetalWidth Species
+1 5.1 3.5 1.4 0.2 Iris-setosa
+2 4.9 3 1.4 0.2 Iris-setosa
+4 7 3.2 4.7 1.4 Iris-versicolor
+5 6.4 3.2 4.5 1.4 Iris-versicolor
+7 6.3 3.3 6 2.5 Iris-virginica
+8 5.8 2.7 5.1 1.9 Iris-virginica
+• Create a Bar plot to get the frequency of the three species of the Iris data
+
+Ans-
+
+import pandas as pd
+df = pd.DataFrame(columns = ['Id', 'SepalLength', 'SepalWidth', 'PetalL
+enth', 'PetalWidth', 'Species'])
+df.loc[0] = [1, 5.1, 3.5, 1.4, 0.2, 'Iris-setosa']
+df.loc[1] = [2, 4.9, 3, 1.4, 0.2, 'Iris-setosa']
+df.loc[2] = [4, 7, 3.2, 4.7, 1.4, 'Iris-versicolor']
+df.loc[3] = [5, 6.4, 3.2, 4.5, 1.4, 'Iris-versicolor']
+df.loc[4] = [7, 6.3, 3.3, 6, 2.5, 'Iris-virginica']
+df.loc[5] = [8, 5.8, 2.7, 5.1, 1.9, 'Iris-virginica']
+print(df)
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+ax=plt.subplots(1,1,figsize=(10,8))
+sns.countplot('Species',data=df)
+plt.title("Iris Species Count")
+plt.show()
+
+9. Create one data frame of data values. Find out mean, range and IQR for this data.
+Ans-
+
+import pandas as pd
+import numpy as np
+data = {'Name': pd.Series(['Priya','Meena','Raju','Nila','Seeta','Geeta
+']),'Age':pd.Series([17, 25, 22, 30, 28, 20]), 'Rating':pd.Series([4.23
+,3.24,2.29,4.30,3.8])}
+df = pd.DataFrame(data)
+print(df.describe())
+
+10. Create two lists, one representing subject names and the other representing marks
+obtained in those subjects. Display the data in a pie chart and bar chart.
+
+Ans-
+
+subject =["maths", "science", "C", "Python", "English"]
+marks=[80, 92, 88, 72, 45]
+explode = [0.2, 0.1, 0, 0.1, 0]
+plt.pie(marks, labels=subject, explode=explode, autopct='%1.1f%%')
+
+11.Write a NumPy program to compute the histogram of nums against the bins.
+Sample Output:
+nums: [0.5 0.7 1. 1.2 1.3 2.1]
+bins: [0 1 2 3]
+Result: (array([2, 3, 1], dtype=int64), array([0, 1, 2, 3]))
+
+Ans-
+
+
+import numpy as np
+import matplotlib.pyplot as plt
+nums = ([0.5, 0.7, 1., 1.2, 1.3, 2.1])
+bins = ([0, 1, 2, 3])
+print("nums: ", nums)
+print("bins: ", bins)
+print("Result: ", np.histogram(nums, bins))
+
+12. Create a data frame for students’ information such name, graduation percentage and age.
+ Display average age of students, average of graduation percentage. And, also describe
+ all basic statistics of data. (Hint: use describe())
+
+ANs-
+
+import numpy as np
+import pandas as pd
+students = {'Name': pd.Series(['Priya','Meena','Raju','Nila','Seeta','G
+eeta']), 'Graduation Percentage': pd.Series([70, 87, 72, 91, 81, 85]),'
+Age':pd.Series([17, 25, 22, 30, 28, 20])}
+df = pd.DataFrame(students)
+print(df.describe())
+
+13. Write a Python program to create Iris data frame
+Id SepalLength SepalWidth PetalLength PetalWidth Species
+1 5.1 3.5 1.4 0.2 Iris-setosa
+2 4.9 3 1.4 0.2 Iris-setosa
+3 4.7 3.2 1.3 0.2 Iris-setosa
+4 7 3.2 4.7 1.4 Iris-versicolor
+5 6.4 3.2 4.5 1.4 Iris-versicolor
+6 6.9 3.1 4.9 1.5 Iris-versicolor
+7 6.3 3.3 6 2.5 Iris-virginica
+8 5.8 2.7 5.1 1.9 Iris-virginica
+9 7.1 3 5.9 2.1 Iris-virginica
+• Display column-wise mean, and median for iris dataset (Hint: Use mean() and median() 
+functions of pandas data frame.
+• Create a graph to find relationship between the petal length and petal width
+
+Ans-
+
+
+import pandas as pd
+df = pd.DataFrame(columns = ['Id', 'SepalLength', 'SepalWidth', 'PetalL
+ength', 'PetalWidth', 'Species'])
+df.loc[0] = [1, 5.1, 3.5, 1.4, 0.2, 'Iris-setosa']
+df.loc[1] = [2, 4.9, 3, 1.4, 0.2, 'Iris-setosa']
+df.loc[2] = [3, 4.7, 3.2, 1.3, 0.2, 'Iris-setosa']
+df.loc[3] = [4, 7, 3.2, 4.7, 1.4, 'Iris-versicolor']
+df.loc[4] = [5, 6.4, 3.2, 4.5, 1.4, 'Iris-versicolor']
+df.loc[5] = [6, 6.9, 3.1, 4.9, 1.5, 'Iris-versicolor']
+df.loc[6] = [7, 6.3, 3.3, 6, 2.5, 'Iris-virginica']
+df.loc[7] = [8, 5.8, 2.7, 5.1, 1.9, 'Iris-virginica']
+df.loc[8] = [9, 7.1, 3, 5.9, 2.1, 'Iris-virginica']
+print(df)
+print('mean of sepal length ',df['SepalLength'].mean())
+print('median of sepal length ',df['SepalLength'].median())
+print('\n')
+print('mean of sepal width',df['SepalWidth'].mean())
+print('median of sepal width',df['SepalWidth'].median())
+print('\n')
+print('mean of petal length ',df['PetalLength'].mean())
+print('median of petal length ',df['PetalLength'].median())
+print('\n')
+print('mean of petal width ',df['PetalWidth'].mean())
+print('median of petal width ',df['PetalWidth'].median())
+print('\n')
+import pandas as pd
+import matplotlib.pyplot as plt
+data = df
+fig = df[df.Species=='Irissetosa'].plot.scatter(x='PetalLength',y='PetalWidth',color='orange', la
+bel='Setosa')
+df[df.Species=='Irisversicolor'].plot.scatter(x='PetalLength',y='PetalWidth',color='blue',
+label='versicolor',ax=fig)
+df[df.Species=='Irisvirginica'].plot.scatter(x='PetalLength',y='PetalWidth',color='green',
+label='virginica', ax=fig)
+fig.set_xlabel("Petal Length")
+fig.set_ylabel("Petal Width")
+fig.set_title(" Petal Length VS Width")
+fig=plt.gcf()
+fig.set_size_inches(12,8)
+plt.show()
+
+14. Create one data frame with 5 subjects and marks of 10 students for each subject. Find
+arithmetic mean, geometric mean, and harmonic mean.
+
+Ans-
+
+import pandas as pd
+import numpy as np
+data={'Name':pd.Series(['khushi','priya','jiya','maya','anil','nita','j
+ay','sneha','vikas','sonali']),'Python':pd.Series([80,82,60,72,88,87,61
+,89,81,96]),'Electronics':pd.Series([72,92,77,89,73,91,75,92,93,76]),'S
+tatistics':pd.Series([78,77,68,62,88,76,63,98,93,67]),'FDS':([90,94,80,
+73,95,93,67,97,65,89]),'TCS':([88,68,69,65,58,84,72,91,75,89])}
+df=pd.DataFrame(data)
+print(df)
+from numpy import mean
+result=mean(df)
+print('Arithmetic Mean:',result)
+#geometric mean
+import scipy
+from scipy import stats
+df['Geometric Mean']=stats.gmean(df.iloc[:, 1:3], axis=1)
+df
+#harmonic mean
+import scipy
+from scipy import stats
+scipy.stats.hmean(df.iloc[:,1:3],axis=1)
+import pandas as pd
+df = pd.DataFrame(columns = ['Country', 'Age', 'Salary', 'Purchased'])
+df.loc[0] = ['France',44, 72000, 'No']
+df.loc[1] = ['Spain',27, 48000, 'Yes']
+df.loc[2] = ['Germany',30, 54000, 'No']
+df.loc[3] = ['Spain',38, 61000, 'No']
+df.loc[4] = ['Germany',40, 'NaN', 'Yes']
+df.loc[5] = ['France',35, 58000, 'Yes']
+df.loc[6] = ['Spain','NaN', 52000, 'No']
+df.loc[7] = ['France',48, 79000, 'Yes']
+df.loc[8] = ['Germany',50, 83000, 'No']
+df.loc[9] = ['France',37, 67000, 'Yes']
+print(df)
+
+15.Create own dataset and do simple preprocessing
+Country Age Salary Purchased
+France 44 72000 No
+Spain 27 48000 Yes
+Germany 30 54000 No
+Spain 38 61000 No
+Germany 40 NaN Yes
+France 35 58000 Yes
+Spain NaN 52000 No
+France 48 79000 Yes
+Germany 50 83000 No
+France 37 67000 Yes
+Write a program in python to perform following task
+• Data frame have two categorical column (the country column, and the purchased 
+column).
+a. Apply OneHot coding on Country column
+
+Ans-
+
+
+from sklearn.preprocessing import OneHotEncoder
+enc = OneHotEncoder(handle_unknown='ignore')
+enc_df=pd.DataFrame(enc.fit_transform(df[['Country']]).toarray())
+enc_df
+df = df.join(enc_df)
+print(df)
+
+16. Create own dataset and do simple preprocessing
+Country Age Salary Purchased
+France 44 72000 No
+Spain 27 48000 Yes
+Germany 30 54000 No
+Spain 38 61000 No
+Germany 40 NaN Yes
+France 35 58000 Yes
+Spain NaN 52000 No
+France 48 79000 Yes
+Germany 50 83000 No
+France 37 67000 Yes
+Write a program in python to perform following task
+• Data frame have two categorical column (the country column, and the purchased 
+column).
+a. Apply Label encoding on purchased column
+
+Ans-
+
+from sklearn.preprocessing import LabelEncoder
+LabelEncoder = LabelEncoder()
+df['Purchased']=LabelEncoder.fit_transform(df['Purchased'])
+print(df)
+
+20. Write a Python program to 
+• Create a data frame containing columns name, age and percentage. 
+• Add 5 rows to the data frame. View the data frame.
+• Print the shape, number of rows-columns, data types, feature names and the 
+description of the data.
+• View basic statistical details of the data
+
+Ans-
+
+
+#import the library
+import pandas as pd
+#create an empty data frame with column names
+df = pd.DataFrame(columns = ['Name', 'Age', 'Percentage'])
+#Add records
+df.loc[0] = ['Anil', 21, 80]
+df.loc[1] = ['Nita', 27, 67]
+df.loc[2] = ['Khushi', 20, 88]
+df.loc[3] = ['Priya', 25, 90]
+df.loc[4] = ['Minal', 21, 72]
+df.loc[5] = ['Jay', 24, 79]
+df.loc[6] = ['Sneha', 26, 77]
+df.loc[7] = ['Sonali', 22, 80]
+df.loc[8] = ['Vikas', 25, 73]
+df.loc[9] = ['Mira', 21, 91]
+print(df)
+df.shape
+df.info()
+df.dtypes
+df.describe()
+
+
